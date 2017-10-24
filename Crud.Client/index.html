@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CRUD Example App</title>
+    <meta charset="utf-8" />
+    <!-- Style sheets -->
+    <link href="content/bootstrap.css" rel="stylesheet" />
+    <link href="content/font-awesome.css" rel="stylesheet" />
+    <link href="content/style.css" rel="stylesheet" />
+
+</head>
+<body ng-app="App">
+
+    <!-- Shared Preloader -->
+    <div ng-if='isLoading'>
+        <h1>Init Shared (State\Route prealoder)... <i class='fa fa-cog fa-spin'></i></h1>
+    </div>
+    <!-- Shared Components -->
+    <div ui-view ng-if='!isLoading'></div>
+
+    <!-- Library Scripts START-->
+    <script src="scripts/jquery-3.1.1.js"></script>
+    <script src="scripts/bootstrap.js"></script>
+    <script src="scripts/toastr.js"></script>
+    <script src="scripts/chart.bundle.min.js"></script>
+    <!--Angular Start-->
+    <script src="scripts/angular.js"></script>
+    <script src="scripts/angular-resource.js"></script>
+    <script src="scripts/angular-mocks.js"></script>
+    <script src="scripts/angular-animate.js"></script>
+    <script src="scripts/angular-sanitize.js"></script>
+    <script src="scripts/angular-route.js"></script>
+    <script src="scripts/angular-chart.min.js"></script>
+    <!--Angular UI -->
+    <script src="scripts/angular-ui/ui-router.js"></script>
+    <script src="scripts/angular-ui/ui-utils.js"></script>
+    <script src="scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+    <!--<script  src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>-->
+    <!--Angular End-->
+    <script src="scripts/_references.js"></script>
+    <!-- Library Scripts END-->
+    <!-- APP -->
+    <script src="app/app.js"></script>
+    <!--config-->
+    <script src="app/common/core/cfg.app.js"></script>
+    <script src="app/common/core/app.core.js"></script>
+    <script src="app/common/core/app.constants.js"></script>
+    <script src="app/common/core/app.routes.js"></script>
+    <script src="app/common/core/app.routes.ui.js"></script>
+    <script src="app/common/core/app.events.js"></script>
+    <script src="app/common/core/app.events.ui.js"></script>
+    <script src="app/common/core/app.customEvents.js"></script>
+    <script src="app/common/core/app.exceptionsHandler.js"></script>
+    <!-- SERVICES -->
+    <!--servies-->
+    <script src="app/common/app.common.js"></script>
+    <script src="app/common/services/app.common.services.js"></script>
+    <!--Shared-->
+    <script src="app/common/services/shared/commonServices.js"></script>
+    <script src="app/common/services/shared/dataPreloader.js"></script>
+    <script src="app/common/services/shared/dataInterceptor.js"></script>
+    <script src="app/common/services/shared/loggerService.js"></script>
+    <!--User-->
+    <script src="app/common/services/user/userAccount.js"></script>
+    <script src="app/common/services/user/currentUser.js"></script>
+    <!--Product-->
+    <script src="app/common/services/product/productModel.js"></script>
+    <script src="app/common/services/product/productService.js"></script>
+    <script src="app/common/services/product/productResource.js"></script>
+    <!--ProductExtra-->
+    <script src="app/common/services/productExtra/productExtraResource.js"></script>
+    <!-- custom services -->
+    <script src="app/common/services/custom/productCalculationsSrvc.js"></script>
+    <!-- mockups -->
+    <script src="app/common/services/mockup/productResourceMock.js"></script>
+
+    <!-- CONTROLLERS -->
+    <!--Shared Start-->
+    <script src="app/shell/app.shell.js"></script>
+    <script src="app/shell/route.cfg.js"></script>
+    <script src="app/shell/shellCtrl.js"></script>
+    <!--Home Start-->
+    <script src="app/splashScreen/app.splash.js"></script>
+    <script src="app/splashScreen/route.cfg.js"></script>
+    <!--User Login-->
+    <script src="app/splashScreen/userAccount/userAccountCtrl.js"></script>
+    <!--Product Start-->
+    <script src="app/products/app.products.js"></script>
+    <script src="app/products/route.cfg.js"></script>
+    <!--List-->
+    <script src="app/products/productList/productListCtrl.js"></script>
+    <!--Details-->
+    <script src="app/products/productDetail/productDetailCtrl.js"></script>
+    <!--Edit-->
+    <script src="app/products/productEdit/productEditCtrl.js"></script>
+    <script src="app/products/productEdit/Info/productEditInfoCtrl.js"></script>
+    <script src="app/products/productEdit/Price/productEditPriceCtrl.js"></script>
+    <script src="app/products/productEdit/Tags/productEditTagsCtrl.js"></script>
+    <!--Prices Analytics Charts-->
+    <script src="app/price/app.price.js"></script>
+    <script src="app/price/route.cfg.js"></script>
+    <!--Analytics Charts-->
+    <script src="app/price/analytics/priceAnalyticsCtrl.js"></script>
+    <!--Product End-->
+    <!-- DIRECTIVES -->
+    <script src="app/directives/app.directives.js"></script>
+    <script src="app/directives/preloader/preloader.js"></script>
+    <!-- App END-->
+
+</body>
+</html>

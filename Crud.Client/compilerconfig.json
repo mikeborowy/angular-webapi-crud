@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "content/crudApp.css",
+    "inputFile": "content/crudApp.scss"
+  },
+  {
+    "outputFile": "content/style.css",
+    "inputFile": "content/style.scss"
+  },
+  {
+    "outputFile": "app/crud.css",
+    "inputFile": "app/crud.scss"
+  }
+]

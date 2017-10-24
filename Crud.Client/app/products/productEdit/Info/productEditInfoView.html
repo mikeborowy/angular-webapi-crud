@@ -1,0 +1,103 @@
+﻿<form class="form-horizontal"
+      name="productForm"
+      novalidate>
+    <fieldset>
+        <legend>Basic Product Information</legend>
+        <!--Product Name-->
+        <div class="form-group"
+             ng-class="{'has-error':productForm.inputProductName.$invalid &&
+                                    productForm.inputProductName.$dirty}">
+            <label class="col-md-2 control-label"
+                   for="inputProductName">Product Name</label>
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="inputProductName"
+                       type="text"
+                       name="inputProductName"
+                       ng-model="vm.product.productName"
+                       placeholder="Product Name"
+                       required
+                       ng-minlength="4"
+                       ng-maxlength="12" />
+            </div>
+            <span class="help-block has-error">
+                <span ng-show="productForm.inputProductName.$error.required">Product Name is required</span>
+                <span ng-show="productForm.inputProductName.$error.minlength">Min length is 4</span>
+                <span ng-show="productForm.inputProductName.$error.maxlength">Max length is 12</span>
+            </span>
+        </div>
+        <!--Product Code-->
+        <div class="form-group"
+             ng-class="{'has-error':productForm.inputProductCode.$invalid &&
+                                    productForm.inputProductCode.$dirty}">
+            <label class="col-md-2 control-label" for="inputProductCode">Product Code</label>
+            <div class="col-md-4">
+                <input class="form-control"
+                       id="inputProductCode"
+                       name="inputProductCode"
+                       ng-model="vm.product.productCode"
+                       ui-mask="AAA-**** (required)"
+                       required>
+            </div>
+            <span class="help-block has-error"
+                  ng-show="productForm.inputProductCode.$invalid">
+                Product Code is required
+            </span>
+        </div>
+        <!--Availability-->
+        <div class="form-group">
+            <label class="col-md-2 control-label"
+                   for="inputAvailabilityDate">Availability</label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input type="text"
+                           class="form-control"
+                           id="inputAvailabilityDate"
+                           name="inputAvailabilityDate"
+                           uib-datepicker-popup="{{ vm.format }}"
+                           ng-model="vm.productReleaseDate"
+                           is-open="vm.opened" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default"
+                                ng-click="vm.OnOpenCalendar($event)">
+                            <i class="glyphicon glyphicon-calendar"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!--Description-->
+        <div class="form-group">
+            <label class="col-md-2 control-label"
+                   for="inputDescription">Description</label>
+            <div class="col-md-10">
+                <textarea class="form-control"
+                          id="inputDescription"
+                          placeholder="Description"
+                          rows="3"
+                          ng-model="vm.product.description" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-4 col-md-offset-2">
+                <span>
+                    <button class="btn btn-primary"
+                            style="width:80px;margin-right:10px"
+                            ng-click="vm.OnSaveClick(productForm)">
+                        Save
+                    </button>
+                </span>
+                <span>
+                    <button class="btn btn-default"
+                            style="width:70px"
+                            ng-click="vm.OnCancelClick()">
+                        Cancel
+                    </button>
+                </span>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+

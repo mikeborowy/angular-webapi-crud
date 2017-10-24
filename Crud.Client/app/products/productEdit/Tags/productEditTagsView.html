@@ -1,0 +1,55 @@
+﻿<form class="form-horizontal" 
+      name="productForm"
+      novalidate>
+    <fieldset>
+        <legend>Product Search Tags</legend>
+        <!-- Add new Tag-->
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="inputSearchTags">Search Tags</label>
+            <div class="col-md-8">
+                <input class="form-control" id="inputSearchTags" type="text"
+                       placeholder="Product search keywords separated by commas"
+                       ng-model="vm.newTags" />
+            </div>
+            <div class="col-md-1">
+                <button type="button"
+                        class="btn btn-default"
+                        title="Add the specified tags"
+                        ng-click="vm.OnAddTagsClick(vm.newTags)">
+                    Add
+                </button>
+            </div>
+        </div>
+        <!-- Tags as buttons list -->
+        <div class="row col-md-8 col-md-offset-2">
+            <span ng-repeat="tag in vm.product.tags | orderBy">
+                <button class="btn btn-default"
+                        style="font-size:smaller;margin-bottom:12px"
+                        ng-click="vm.OnRemoveTagClick($index)">
+                    {{tag}}
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </span>
+        </div>
+        <!--Save/Cancel new tag btn-->
+        <div class="form-group">
+            <div class="col-md-4 col-md-offset-2">
+                <span>
+                    <button class="btn btn-primary"
+                            style="width:80px;margin-right:10px"
+                            type="submit"
+                            ng-click="vm.OnSaveClick(productForm)">
+                        Save
+                    </button>
+                </span>
+                <span>
+                    <button class="btn btn-default"
+                            style="width:70px"
+                            ng-click="vm.OnCancelClick()">
+                        Cancel
+                    </button>
+                </span>
+            </div>
+        </div>
+    </fieldset>
+</form>

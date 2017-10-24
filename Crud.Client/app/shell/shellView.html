@@ -1,0 +1,10 @@
+﻿<div id="shared-view"
+     ng-if="vm.UserLoggedIn()">
+    <!--NAV START-->
+    <!--<div ui-view="navbar"></div>-->
+    <div ng-include="'app/shell/shellNavBar.html'"></div>
+    <!-- PAGE PRELOADER -->
+    <preloader-directive ng-if="dataIsLoading"></preloader-directive>
+    <!-- PAGE CONTAINER -->
+    <div ui-view></div>
+</div>

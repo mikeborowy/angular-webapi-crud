@@ -1,0 +1,141 @@
+﻿(function () {
+    'use strict';
+
+    var dataService = "ProductResource";
+
+    angular
+        .module("App.Products")
+        .config(ConfigRouteFn);
+
+    ConfigRouteFn.$inject = ["$appStatesProvider"]
+
+    //must be called custom providers $appStateProvider => "app.core.js"
+    function ConfigRouteFn($appStatesProvider) {
+
+        $appStatesProvider.SetStates(States());
+    }
+
+    function States() {
+
+        return [
+          /*Product List*/
+          {
+              name: "productList_st",
+              config: {
+                  url: "/products",
+                  templateUrl: "app/products/productList/productListView.html",
+                  controller: "ProductListCtrl as vm",
+                  resolve: {
+                      service: dataService,
+                      dataContext: QueryDataFn
+                  }
+              }
+          },
+          /*Product Detail*/
+          {
+              name: "productDetail_st",
+              config: {
+                  url: "/products/:productId",
+                  templateUrl: "app/products/productDetail/productDetailView.html",
+                  controller: "ProductDetailCtrl as vm",
+                  resolve: {
+                      service: dataService,
+                      dataContext: GetDataFn
+                  }
+              },
+          },
+         /*Product Edit*/
+         {
+             name: "productEdit_st",
+             config: {
+                 abstract: true,
+                 url: "/products/edit/:productId",
+                 templateUrl: "app/products/productEdit/productEditView.html",
+                 controller: "ProductEditCtrl as vm",
+                 resolve: {
+                     service: dataService,
+                     dataContext: GetDataFn
+                 }
+             }
+         },
+        /*Product Edit: Info*/
+        {
+            name: "productEdit_st.info_st",
+            config: {
+                url: "/info",
+                templateUrl: "app/products/productEdit/Info/productEditInfoView.html",
+                controller: "ProductEditInfoCtrl as vm",
+                resolve: {
+                    service: dataService,
+                    dataContext: GetDataFn
+                }
+            }
+        },
+        /*Product Edit: Price*/
+          {
+              name: "productEdit_st.price_st",
+              config: {
+                  url: "/price",
+                  templateUrl: "app/products/productEdit/Price/productEditPriceView.html",
+                  controller: "ProductEditPriceCtrl as vm",
+                  resolve: {
+                      service: dataService,
+                      dataContext: GetDataFn
+                  }
+              }
+          },
+          /*Product Edit: Tags*/
+          {
+              name: "productEdit_st.tags_st",
+              config: {
+                  url: "/tags",
+                  templateUrl: "app/products/productEdit/Tags/productEditTagsView.html",
+                  controller: "ProductEditTagsCtrl as vm",
+                  resolve: {
+                      service: dataService,
+                      dataContext: GetDataFn
+                  }
+              }
+          }
+        ];
+    }
+
+    function QueryDataFn(service) {
+
+        var promise = service
+            .query(HttpSuccessHandler, HttpErrorHandler)
+            .$promise;
+
+        return promise;
+    }
+
+    function GetDataFn(service, $stateParams) {
+
+        var _productId = $stateParams.productId;
+
+        return service
+            .get({ productId: _productId }, HttpSuccessHandler, HttpErrorHandler)
+            .$promise;
+    }
+
+    function HttpSuccessHandler(data) {
+        return data;
+    }
+
+    function HttpErrorHandler(response) {
+
+        var msg = "";
+
+        if (response.status == 404) {
+            msg = "Error acessing resource " + response.config.method + " " + response.config.url;
+        }
+        else {
+            msg = response.statusText;
+        }
+
+        if (toastr)
+            toastr.error(msg);
+        else
+            alert(msg);
+    }
+})();

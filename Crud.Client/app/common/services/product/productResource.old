@@ -1,0 +1,61 @@
+﻿(function () {
+    'use strict';
+
+    var resourceId = "ProductResource";
+
+    angular
+        .module("Common.Services")
+        .factory(resourceId, ProductResourceFn);
+
+    ProductResourceFn.$inject = [
+        "$resource",
+        "$timeout",
+        "AppSettings",
+        "UserAccount"
+    ];
+
+    function ProductResourceFn($resource, $timeout, appSettings, userAccount) {
+
+        var resource;
+
+        if (!appSettings.serverMockEnabled) {
+            //for WebAPI from different host
+            resource = $resource(appSettings.serverAPIPath + "/api/Products/:productId", null, HTTPRequestSetup());
+        }
+        else {
+            //for mockup data
+            resource = $resource("/api/products/:productId");
+        }
+
+        return $timeout(function () {
+            return resource;
+        }, 2000);
+
+        function HTTPRequestSetup() {
+
+            var currentUser = userAccount.currentUserData;
+
+            return {
+                //default action added here due to headers prop
+                'get': {
+                    headers: { 'Authorization': 'Bearer ' + currentUser.token }
+                    //headers: { 'Authorization': 'Bearer ' + currentUser.getProfile().token }
+                },
+                //default action added here due to headers prop
+                'save': {
+                    method: 'POST',
+                    headers: { 'Authorization': 'Bearer ' + currentUser.token }
+                    //headers: { 'Authorization': 'Bearer ' + currentUser.getProfile().token }
+                },
+                //custom action
+                'update': {
+                    method: 'PUT',
+                    headers: { 'Authorization': 'Bearer ' + currentUser.token }
+                    //headers: { 'Authorization': 'Bearer ' + currentUser.getProfile().token }
+                }
+            }
+        }
+
+    }
+
+})();
